@@ -74,7 +74,7 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $user = auth()->user();
+        $user = JWTAuth::user();
 
         return response()->json([
             'success' => true,
@@ -94,7 +94,7 @@ class AuthController extends Controller
     public function profile()
     {
         try {
-            $user = auth()->user();
+            $user = JWTAuth::parseToken()->authenticate();
             
             return response()->json([
                 'success' => true,
